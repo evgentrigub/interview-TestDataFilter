@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
-export class ResultComponent implements OnDestroy {
+export class ResultComponent {
 
   private readonly subscription: Subscription;
 
@@ -30,7 +30,7 @@ export class ResultComponent implements OnDestroy {
     private activatedRouter: ActivatedRoute,
     private router: Router,
   ) {
-    this.subscription = this.activatedRouter.queryParams.subscribe((option: Item) => {
+    this.activatedRouter.queryParams.subscribe((option: Item) => {
       this.data$ = this.getData();
 
       if (option && (option.name || option.type)) {
@@ -51,12 +51,8 @@ export class ResultComponent implements OnDestroy {
     return this.service.getItems();
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
   reset() {
-    this.router.navigate([], { queryParams: {} });
+    // this.router.navigate([], { queryParams: {} });
     this.filteredData$ = this.originalData$;
   }
 
