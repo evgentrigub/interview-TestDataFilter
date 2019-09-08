@@ -4,9 +4,7 @@
     <mat-card-subtitle>Look at the result</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <button mat-raised-button (click)="reset()">Reset</button>
-    <table mat-table [dataSource]="(!!options.type || !!options.name) ? (filteredData$ | async) : (data$ | async)"
-      class="mat-elevation-z1" style="width: 100%">
+    <table mat-table [dataSource]="filteredData$ | async" class="mat-elevation-z1" style="width: 100%">
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
